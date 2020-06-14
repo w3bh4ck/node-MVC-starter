@@ -4,7 +4,11 @@ const authControllers = require("../../controllers/auth-controllers/auth.control
 
 const router = express.Router();
 
-router.post("/login", authControllers.login);
+router.post(
+	"/login",
+	[check("email").trim().isEmail(), check("password").trim().isLength({ min: 6 })],
+	authControllers.login
+);
 
 router.post(
 	"/signup",
