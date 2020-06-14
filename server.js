@@ -21,6 +21,6 @@ if (process.env.NODE_ENV === "development") {
 }
 
 // Mount app routers
-app.use("/api/v1/auth", authRoute);
+app.use("/api/v1/risposta", authRoute);
 
 app.listen(port, () => console.log(`Server running in ${process.env.NODE_ENV} on port: ${port}`));
