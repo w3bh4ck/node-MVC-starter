@@ -1,5 +1,12 @@
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://lucky:secret1>@ds255319.mlab.com:55319/risposta", {
-	useNewUrlParser: true,
-	useUnifiedTopology: true,
-});
+const connectDB = async () => {
+	const conn = await mongoose.connect(process.env.MONGO_URI, {
+		useNewUrlParser: true,
+		useCreateIndex: true,
+		useUnifiedTopology: true,
+		useFindAndModify: false,
+	});
+	console.log(`Database connected ${conn.connection.host}`);
+};
+
+module.exports = connectDB;
