@@ -1,18 +1,17 @@
-const { validationResult } = require("express-validator");
-
+/**
+ * @description: This should handle login actions
+ * @route: GET /api/v1/auth/login
+ * @access public
+ */
 exports.login = (req, res, next) => {
-	const errors = validationResult(req);
-	if (!errors.isEmpty()) {
-		return res.status(422).json(errors);
-	} else {
-		return res.status(200).json({ ...req.body, message: "login successful" });
-	}
+	return res.status(200).json({ ...req.body, message: "login successful" });
 };
 
+/**
+ * @description: This should handle signup actions
+ *  @route: GET /api/v1/auth/signup
+ * @access public
+ */
 exports.signup = (req, res, next) => {
-	const errors = validationResult(req);
-	if (!errors.isEmpty()) {
-		return res.status(422).json(errors);
-	}
-	res.status(200).json({ ...req.body, Message: "sign up successfull" });
+	return res.status(200).json({ ...req.body, Message: "sign up successfull" });
 };
