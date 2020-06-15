@@ -1,4 +1,5 @@
 const express = require("express");
+const colors = require("colors");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
@@ -16,8 +17,7 @@ const port = process.env.PORT || 5000;
 // connect to databse
 connectDB();
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(express.json());
 
 //Dev logger
 if (process.env.NODE_ENV === "development") {
@@ -27,4 +27,13 @@ if (process.env.NODE_ENV === "development") {
 // Mount app routers
 app.use("/api/v1/risposta", authRoute);
 
-app.listen(port, () => console.log(`Server running in ${process.env.NODE_ENV} on port: ${port}`));
+const server = app.listen(port, () =>
+	console.log(`Server running in ${process.env.NODE_ENV} on port: ${port}`.yellow.bold.underline)
+);
+
+//  Handle rejections
+process.on("unhandledRejection", (err, promise) => {
+	console.log(`Error: ${err.message}`.red);
+	//close server and exit process
+	server.close(() => process.exit(1));
+});
