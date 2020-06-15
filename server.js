@@ -2,7 +2,7 @@ const express = require("express");
 const colors = require("colors");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
-const bodyParser = require("body-parser");
+const errorHandler = require("./middlewares/error-handler/error.middleware");
 const authRoute = require("./routes/auth-routes/auth.routes");
 const connectDB = require("./config/database-config/database.config");
 
@@ -26,6 +26,8 @@ if (process.env.NODE_ENV === "development") {
 
 // Mount app routers
 app.use("/api/v1/risposta", authRoute);
+
+app.use(errorHandler);
 
 const server = app.listen(port, () =>
 	console.log(`Server running in ${process.env.NODE_ENV} on port: ${port}`.yellow.bold.underline)
