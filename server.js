@@ -2,12 +2,12 @@ const express = require("express");
 const colors = require("colors");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
-const errorHandler = require("./middlewares/error-handler/error.middleware");
-const authRoute = require("./routes/auth-routes/auth.routes");
-const connectDB = require("./config/database-config/database.config");
+const errorHandler = require("./src/error-handler/error.middleware");
+const authRoute = require("./src/routes/auth-routes/auth.routes");
+const connectDB = require("./src/config/database-config/database.config");
 
 // load env variables
-dotenv.config({ path: "./config/env/config.env" });
+dotenv.config({ path: "./src/config/env/config.env" });
 
 const app = express();
 
