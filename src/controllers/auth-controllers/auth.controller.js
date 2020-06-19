@@ -1,3 +1,5 @@
+const Users = require("../../models/users-models/Users.model");
+
 /**
  * @description: This should handle login actions
  * @route: GET /api/v1/auth/login
@@ -12,6 +14,14 @@ exports.login = (req, res, next) => {
  *  @route: GET /api/v1/auth/signup
  * @access public
  */
-exports.signup = (req, res, next) => {
-	return res.status(200).json({ ...req.body, Message: "sign up successfull" });
+exports.signup = async (req, res, next) => {
+	const { firstName, lastName, email, password } = req.body;
+	const user = await Users.create({
+		firstName,
+		lastName,
+		email,
+		password,
+	});
+	res.status(200).json({ success: true, user });
+	console.log(user);
 };

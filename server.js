@@ -25,7 +25,7 @@ if (process.env.NODE_ENV === "development") {
 }
 
 // Mount app routers
-app.use("/api/v1/risposta", authRoute);
+app.use("/api/v1/risposta/auth", authRoute);
 
 app.use(errorHandler);
 
