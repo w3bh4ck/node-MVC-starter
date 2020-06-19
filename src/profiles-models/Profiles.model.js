@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const ProfileSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
 	firstName: {
 		type: String,
 		required: true,
@@ -31,6 +31,12 @@ const ProfileSchema = new mongoose.Schema({
 		maxlength: [20, "phone number must not be more than 20 characters"],
 		trim: true,
 	},
+	resetPasswordToken: String,
+	resetPasswordExpire: Date,
+	createdAt: {
+		type: Date,
+		default: Date.now,
+	},
 });
 
-module.export = mongoose.model("Profiles", ProfileSchema);
+module.export = mongoose.model("Users", UserSchema);
