@@ -22,6 +22,6 @@ exports.signup = async (req, res, next) => {
 		email,
 		password,
 	});
-	res.status(200).json({ success: true, user });
-	console.log(user);
+	res.status(200).json({ success: true, message: "Signup successful" });
+	return user;
 };
