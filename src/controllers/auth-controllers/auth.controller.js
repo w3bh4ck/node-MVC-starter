@@ -22,6 +22,8 @@ exports.signup = async (req, res, next) => {
 		email,
 		password,
 	});
-	res.status(200).json({ success: true, message: "Signup successful" });
+	// create token
+	const token = user.getSignedJwtToken();
+	res.status(200).json({ success: true, message: "Signup successful", token });
 	return user;
 };
