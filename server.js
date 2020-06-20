@@ -1,5 +1,6 @@
 const express = require("express");
 const colors = require("colors");
+const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
 const errorHandler = require("./src/error-handler/error.middleware");
@@ -18,7 +19,7 @@ const port = process.env.PORT || 5000;
 connectDB();
 
 app.use(express.json());
-
+app.use(cookieParser());
 //Dev logger
 if (process.env.NODE_ENV === "development") {
 	app.use(morgan("dev"));
